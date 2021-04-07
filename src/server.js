@@ -4,7 +4,7 @@ const server = express()
 // request, response
 server.get('/', (request, response) => {
    
-    return response.send('Hi Bruno')
+    return response.sendFile(__dirname + "/views/index.html")
 })
 
 server.listen(3000, () => console.log('Init'))
