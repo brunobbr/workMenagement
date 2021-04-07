@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/brunobbr/workMenagement/issues"
   },
-  "homepage": "https://github.com/brunobbr/workMenagement#readme"
+  "homepage": "https://github.com/brunobbr/workMenagement#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
