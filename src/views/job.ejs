@@ -23,12 +23,12 @@
     />
     
   </head>
-  <body id="page-job">
+  <body id="page-job" >
     <%- include('parts/page-header', { title: 'Adicionar new Job'}) %> 
 
     <div class="container flex animate-up delay-2">
       <main>
-        <form id="form-job">
+        <form id="form-job" action="/job" method="POST">
           <fieldset>
             <legend>Dados do Job</legend>
             <div class="separator light"></div>
