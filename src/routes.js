@@ -18,6 +18,19 @@ const Profile = {
            return res.render(views + "profile", {profile: Profile.data })
         },
         update(req, res) {
+            const data = req.body
+            const weeksPerYear = 52
+            const weeksPerMonth = (weeksPerYear - data["vacation-per-year"]) / 12
+            const weekTotalHours = data["hours-per-day"] * data["days-per-week"]
+            const monthlyTotalHours = weekTotalHours * weeksPerMonth
+            const valueHour = data["value-hour"] = data["monthly-budget"] / monthlyTotalHours
+            Profile.data = {
+                ...Profile.data,
+                ...req.body,
+                "value-hour": valueHour
+            }
+            return res.redirect('/profile')
+            
              
         }
     }
@@ -68,7 +81,16 @@ const Job = {
         },
        create(req, res) {
             return res.render(views + "job")
+        },
+       show(req, res){
+        const jobId = req.params.id
+        const job = Job.data.find(job => job.id === jobId)
+        if(!job){
+            return res.render(views + 'Job not found', {job})
         }
+
+        return res.render(views + "job-edit", {job})
+       }
     },
 
     services: {
@@ -93,7 +115,7 @@ const Job = {
 routes.get('/', Job.controllers.index)
 routes.get('/job',  Job.controllers.create)
 routes.post('/job', Job.controllers.save)
-routes.get('/job/edit', (req, res) => res.render(views + "job-edit"))
+routes.get('/job/:id', Job.controllers.show)
 routes.get('/profile', Profile.controllers.index)
 routes.post('/profile', Profile.controllers.update)
 
