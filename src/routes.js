@@ -43,14 +43,14 @@ const Job = {
              name: "Feito com Amor",
              "daily-hours": 2,
              "total-hours": 1,
-             created_At: Date.now(),
+             created_At: Date.now()
             },
             {
             id: 2,
             name: "Designer",
            "daily-hours": 2,
             "total-hours": 60,
-            created_At: Date.now(),
+            created_At: Date.now()
            }
     ],
 
@@ -84,7 +84,7 @@ const Job = {
         },
        show(req, res){
         const jobId = req.params.id
-        const job = Job.data.find(job => job.id === jobId)
+        const job = Job.data.find(job => Number(job.id) === Number(jobId))
         if(!job){
             return res.render(views + 'Job not found', {job})
         }
